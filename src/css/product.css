@@ -1,0 +1,17 @@
+.product{
+   /* border:  2px solid black; */
+   height: auto;
+   width: 99%;;
+   position: absolute;
+   top:400px;
+   left: 5px;
+   /* right: 100px; */
+   z-index: 0;
+   margin: auto;
+  
+}
+.aad-bar{
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   /* border: 2px solid green; */
+}

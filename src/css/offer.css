@@ -1,0 +1,39 @@
+.offers-for-day{
+    display: flex;
+    /* grid-template-columns: auto 4fr; */
+    flex-direction: row;
+    /* border: 2px solid red; */
+    /* z-index: 3; */
+    position: absolute;
+    top: 40vh;
+    right :1;
+    /* left : 100px; */
+    z-index: 2;
+    height: 300px;
+    width: auto; 
+    float: right;
+}
+.title-offer{
+    /* border: 2px solid black; */
+    writing-mode:vertical-rl;
+    /* width: max-content; */
+    text-align: center;
+    padding: 5px;
+    color: white;
+    background-color: black;
+    font-size: 30px;
+    cursor: pointer;
+    /* border-top-right-radius: 10px;  */
+
+}
+.cuppon{
+    /* border: 2px solid red; */
+}
+#offer{
+    height: 100%;
+    width : 100%;
+}
+
+.display-none{
+    display: none;
+}

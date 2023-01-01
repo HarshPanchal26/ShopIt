@@ -1,0 +1,23 @@
+.brand-list{
+    width: auto;
+    max-height : max-content;
+    display: flex;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* border: 2px solid red; */
+    margin: 14px auto;
+    /* border: 4px dotted green; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#brand-img{
+    /* position: absolute; */
+    /* top: 2px; */
+    height: auto;
+}
+.brand{
+    width: 10%;
+    /* background-color: red; */
+    height: auto;
+    /* display: table-row;    */
+}

@@ -1,0 +1,21 @@
+.kids{
+    border:4px solid blue;
+    /* background: red; */
+    position: relative;
+    top: 130px;
+    /* margin: auto 10px; */
+    width: auto;
+    height: fit-content;
+    display: table-row;
+}
+.kids-slideshow{
+    width : auto;
+    height : 10%;
+    margin: auto;
+    /* border: 1px solid black; */
+}
+
+.explore-more{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
