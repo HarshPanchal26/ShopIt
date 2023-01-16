@@ -18,6 +18,10 @@ export default function Navbar() {
               <i icon="fa-solid fa-user" />
             </div>
             <div className=' nav-elem' id="nav-4">category</div>
+            {/* <div className=' nav-elem' id="nav-4">category</div>
+            <div className=' nav-elem' id="nav-4">category</div>
+            <div className=' nav-elem' id="nav-4">category</div>
+            <div className=' nav-elem' id="nav-4">category</div> */}
             <div className=' nav-elem' id="nav-5">
               <i className="fa-light fa-bag-shopping"></i>
               <i className="fa-light fa-bag-shopping"></i>
@@ -42,6 +46,8 @@ export default function Navbar() {
                 <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
                   <li style={{ display: "flex", flexDirection: "column" }}><i class="fa-solid fa-user"></i> Account</li>
                   <li style={{ display: "flex", flexDirection: "column" }}><i class="fa-solid fa-heart"></i>WishList</li>
+                  <li style={{ display: "flex", flexDirection: "column" }}><i class="fa-solid fa-bag-shopping"></i>Bag</li>
+                  <li style={{ display: "flex", flexDirection: "column" }}><i class="fa-solid fa-bag-shopping"></i>Bag</li>
                   <li style={{ display: "flex", flexDirection: "column" }}><i class="fa-solid fa-bag-shopping"></i>Bag</li>
                 </ul>
               </div>
