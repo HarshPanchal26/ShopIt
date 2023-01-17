@@ -2,29 +2,31 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom';
 // import './App.css';
 import '../App.css'
+import SignIn from './SignIn';
 export default function Navbar() {
   return (
     <header className="App-header">
           <nav className='navbar'>
            
-            <div className='logo-company'><Link to='/'><i className="fa-brands fa-staylinked fa-2xl imp"></i></Link></div>
+            <div className='logo-company'>
+              <Link to='/'><i className="fa-brands fa-staylinked fa-2xl imp"></i></Link>
+            </div>
             
             <div className=' nav-elem' id="nav-2">
               <div className='input'>
                 <input type="text" name="input" className='input-item'></input>
               </div>
             </div>
-            <div className=' nav-elem' id="nav-3">Fashion
+            <div className=' nav-elem' id="nav-3">
+              <NavLink to='/Fashion' className='nav-inner'>Fashion</NavLink>
               <i icon="fa-solid fa-user" />
             </div>
-            <div className=' nav-elem' id="nav-4">category</div>
-            {/* <div className=' nav-elem' id="nav-4">category</div>
-            <div className=' nav-elem' id="nav-4">category</div>
-            <div className=' nav-elem' id="nav-4">category</div>
-            <div className=' nav-elem' id="nav-4">category</div> */}
-            <div className=' nav-elem' id="nav-5">
-              <i className="fa-light fa-bag-shopping"></i>
-              <i className="fa-light fa-bag-shopping"></i>
+            <div className='nav-elem' id="nav-4">
+              <NavLink to='/catergory' className='nav-inner'>Catergory</NavLink>
+            </div>
+            
+            <div className='nav-elem' id="nav-5">
+               <NavLink to='authentication' className='nav-inner'>Sign In</NavLink>
             </div>
           </nav>
             <nav className='navbar2'>

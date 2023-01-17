@@ -1,0 +1,54 @@
+.sign-in-prompt{
+    /* border: 2px solid black; */
+    position: relative;
+    top: 120px;
+    height: 100vh;
+}
+.sign-in-modla{
+ /* border: 2px solid green; */
+ margin: auto;
+ width: 50%;
+ 
+}
+
+h2{
+    /* justify-content: center; */
+    color: green;
+    text-align: center;
+}
+
+.form-in{
+    align-items: center;
+    margin: auto;
+    width: 50%;
+    /* border: 2px solid red; */
+}
+
+.sign-form{
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+input{
+    width: 100%;
+    /* border-bottom: 2px solid black; */
+    padding: 10px;
+    display: flex;
+    margin: auto;
+    
+}
+button{
+    display: flex;
+    justify-items: center;
+    margin:  20px auto;
+    width: 20%;
+    justify-content: center;
+    /* height: 20px; */
+    padding: 10px 10px;
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+    border-radius: 5px;
+}
