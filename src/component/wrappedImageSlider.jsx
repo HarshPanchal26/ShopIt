@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 
 const UpdaetdComponent = (Original,image)=>{
     class NewComponant extends React.Component{
