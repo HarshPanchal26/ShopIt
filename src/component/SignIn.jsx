@@ -1,98 +1,121 @@
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import '../css/Auth.css'
 // import { initializeApp } from 'firebase/app';
-import {app,database} from './firbaseConfig.js';
+import { app, database } from './firbaseConfig.js';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection , getDocs , where , query , onSnapshot} from 'firebase/firestore';
-import { async } from '@firebase/util';
+import { addDoc, collection, getDocs, where, query, onSnapshot } from 'firebase/firestore';
 import Table from './Table';
+import { useEffect } from 'react';
+import $ from "jquery";
 
 
+export default function SignIn() {
 
-export default function SignIn() {      
-
-    const [count , changeIt] = useState(0);
-
- 
-
-const auth = getAuth();
-
-const collectionRef = collection(database, 'users');
-
-
-    const [data , setData] = useState({
-    name : "",
-    email : "",
-    password : ""
-})    
+    const auth = getAuth();
+    const collectionRef = collection(database, 'users');
     
-    const handleInput = (event)=>{
+    var newDataSet = [];
+    const [count, changeIt] = useState(0);
+    const [dataArray, setArray] = useState([]);
+
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        password: ""
+    })
+
+    const getData =  async() => {
+
+        
+            await getDocs(collectionRef)
+                .then((querySnapshot)=>{               
+                    const newData = querySnapshot.docs
+                        .map((doc) => ({...doc.data(), id:doc.id }));
+                    // setTodos(newData);
+                    newDataSet = newData                
+                    console.log(newDataSet);
+                    setArray(newData);
+                })
+                
+            }
+
+    const handleInput = (event) => {
 
         let newInput = {
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         }
-        setData({...data, ...newInput});
+        setData({ ...data, ...newInput });
 
     }
-    
-    
+
     // submit event handler............. 
-    const handleEvent = (e)=>{
+
+    const handleEvent = (e) => {
         var status = false;
         e.preventDefault();
         console.log(data.email);
         console.log(data.name);
-      createUserWithEmailAndPassword(auth, data.email, data.password)
-                .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    console.log(user);
-                    // status = true;
-                  
-                    // ...
+        createUserWithEmailAndPassword(auth, data.email, data.password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user);
+                // status = true;
+
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                status = true;
+                alert(errorMessage, errorCode);
+                // ..
+            });
+
+        // storing in database 
+        if (!status) {
+            addDoc(collectionRef, {
+                name: data.name,
+                email: data.email,
+                password: data.password,
+            })
+                .then((responce) => {
+                    console.log("Data Added Succesfully");
+                    changeIt((prev) => prev + 1);
+                    alert("You are now verifiyd user");
+                    getData();
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    status = true;
-                    alert(errorMessage);
-                    // ..
-                });
-             
-           // storing in database 
-            if(!status){
-            addDoc(collectionRef, {
-                name : data.name,
-                email : data.email,
-                password : data.password,
-            })
-            .then((responce)=>{
-               console.log("Data Added Succesfully");
-               changeIt((prev)=> prev +1);
-               alert("You are now verifiyd user");
-            })
-            .catch((error)=>{
-                alert(error.message);
-            })
-        }else{
+                    alert(error.message);
+                })
+        } else {
             alert("There is some problem");
         }
-                document.getElementById("form-signIn").reset();
+        document.getElementById("form-signIn").reset();
     }
-    
-    const filtter = ()=>{
-        const nameQuery = query(collectionRef ,where("name",'==','sahil'));
-        
-        onSnapshot(nameQuery,(data)=>{
-            console.log(data.docs.map((x)=>{
-                return x.data(); 
+
+    const filtter = () => {
+        const nameQuery = query(collectionRef, where("name", '==', 'sahil'));
+
+        onSnapshot(nameQuery, (data) => {
+            console.log(data.docs.map((x) => {
+                return x.data();
             }))
         })
+    }
+    
+    useEffect(()=>{
+        getData();
+    }, [])
 
-    }    
+    const dispalayTable = ()=>{
+         $('.data-base').toggle();
+          $('#hide-btn').text("Show-table");
+    }
+
     return (
         <div className='sign-in-prompt'>
-            
+
 
             <div className='sign-in-modla'>
 
@@ -110,14 +133,15 @@ const collectionRef = collection(database, 'users');
                         </div>
                         <div>
                             <button type='submit' name="submit" onClick={handleEvent}>Submit</button>
-                            <button type='button' name="btn" onClick={filtter}>Show-Data</button>
+                            <button type='button' name="btn" id="hide-btn" onClick={dispalayTable}>Hide-table</button>
+                            {/* <button type='button' name="btn" onClick={getData}>Data</button> */}
                         </div>
                     </div>
                 </form>
             </div>
             <div className='data-base'>
-                
-             <Table count={count}></Table>
+                {console.log(dataArray)}
+                <Table count={count} array={dataArray}></Table>
 
             </div>
         </div>
@@ -126,3 +150,9 @@ const collectionRef = collection(database, 'users');
     )
 }
 
+
+
+      
+
+
+      //     ama shu error chhe kbr nathi padti 

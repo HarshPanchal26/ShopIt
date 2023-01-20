@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/offer.css';
 import $ from "jquery";
 import { useEffect } from 'react';
+import SignIn from './SignIn';
 
 export default function Offers() {
     const showOffer = ()=>{
@@ -19,3 +20,19 @@ export default function Offers() {
     </div>
   )
 }     
+
+
+
+
+// SignIn.JSX
+
+  // const data = getDocs(collectionRef);
+                // console.log(data);
+                // let newArry = data.docs.map((x) => {
+                //     return console.log({ ...x.data(), id: x.data });
+                // })
+                // setArray(newArry);
+
+            
+                // const newData = []; 
+

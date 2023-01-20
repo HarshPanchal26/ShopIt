@@ -2,37 +2,31 @@ import React, { useEffect , useState} from 'react'
 import '../css/Auth.css'
 // import { initializeApp } from 'firebase/app';
 import { database } from './firbaseConfig.js';
-import { collection, getDocs } from 'firebase/firestore';
-import { async } from '@firebase/util';
+import {doc , updateDoc , deleteDoc} from 'firebase/firestore';
 
-
- function Table(props) {
+function Table(props) {
   
-    //  const [dataFetched , useBool] = useState(false);
-
-    const collectionRef = collection(database, 'users');
-    var dataFromBase = [];
-    // var container = [];
+     var dataFromBase = [];
    
-    useEffect(()=>{
-        const fetching = async ()=> {
-          const container = await getDocs(collectionRef);
-          dataFromBase = [...container.docs.map((x)=>{
-            return ({...x.data(),id:x.ix});
-          })];
-          console.log(dataFromBase);
-        }
-        fetching();
-    },[dataFromBase]);
-
-
-    console.log(dataFromBase);
-
-
-
-console.log(dataFromBase);
-console.log(dataFromBase);
-
+   
+        console.log(props.array);
+        dataFromBase = [...props.array];
+        
+    const deleteData = (id) =>{
+        const docToDelete = doc(database,"users" ,id);
+          deleteDoc(docToDelete)
+          .then(()=>{
+            alert("data is deleted")
+          })
+          .catch((err)=>{
+            alert(err.message)
+          })
+    }    
+    const updateData = (id) =>{
+        
+    }    
+    
+    
     return (
         <div className='data-base'>
             <table>
@@ -45,15 +39,13 @@ console.log(dataFromBase);
                     </tr>
                 </thead>
                 <tbody>
-                    { dataFromBase.length>0 &&
-                        dataFromBase.map((item=>{
+                    { dataFromBase.map((item=>{
                             return (
-                            console.log('datafromBase :>> ', dataFromBase),
                             <tr>
-                                <td key={item.id}>{item.name}</td>
-                                <td key={item.id}>{item.email}</td>
-                                <td key={item.id}>Update</td>
-                                <td key={item.id}>Delete</td>
+                                <td>{item.name}</td>
+                                <td>{item.email}</td>
+                                {/* <td><button type='button' name="Update" onClick={updateData(item.id)}>Update</button></td> */}
+                                {/* <td><button type='button' name="Delete" onClick={deleteData(item.id)}>Delete</button></td> */}
                             </tr>)
                             
                         }))
@@ -72,20 +64,3 @@ export default React.memo(Table);
 
 
 
-// useEffect(async () => {
-    //     // const takeIt = async () => {
-    //         const q = await getDocs(collectionRef)
-    //         var dataFromBase = q.docs.map((item)=>{
-    //             return({
-    //                 ...item.data(),
-    //                 id:item.id
-    //             })
-    //         })     
-    //     // dataFromBase = [...dataFrom]    
-    //     console.log(props.count);
-    //     console.log(dataFromBase);
-    // //  };
-
-    //  console.log(dataFromBase);
-
-    // });
