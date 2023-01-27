@@ -10,6 +10,7 @@ import Footer from './component/Footer';
 import ImageSlider from './component/ImageSlider';
 import Offers from './component/Offers';
 import SignIn from './component/SignIn';
+import Update from './component/Update';
 function App() {
 
 
@@ -20,6 +21,7 @@ function App() {
       <div className="App">
        
         <Navbar />
+        {/* <Route path='/update-data' element={<Update/>}></Route> */}
         {/* <Router> */}
         <Routes>
           <Route path='/' element={<Home />}></Route>

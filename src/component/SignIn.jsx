@@ -7,13 +7,15 @@ import { addDoc, collection, getDocs, where, query, onSnapshot } from 'firebase/
 import Table from './Table';
 import { useEffect } from 'react';
 import $ from "jquery";
+import Button from '@mui/material/Button';
+import QrCode from './QrCode';
 
 
 export default function SignIn() {
 
     const auth = getAuth();
     const collectionRef = collection(database, 'users');
-    
+
     var newDataSet = [];
     const [count, changeIt] = useState(0);
     const [dataArray, setArray] = useState([]);
@@ -24,20 +26,20 @@ export default function SignIn() {
         password: ""
     })
 
-    const getData =  async() => {
+    const getData = async () => {
 
-        
-            await getDocs(collectionRef)
-                .then((querySnapshot)=>{               
-                    const newData = querySnapshot.docs
-                        .map((doc) => ({...doc.data(), id:doc.id }));
-                    // setTodos(newData);
-                    newDataSet = newData                
-                    console.log(newDataSet);
-                    setArray(newData);
-                })
-                
-            }
+
+        await getDocs(collectionRef)
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({ ...doc.data(), id: doc.id }));
+                // setTodos(newData);
+                newDataSet = newData
+                console.log(newDataSet);
+                setArray(newData);
+            })
+
+    }
 
     const handleInput = (event) => {
 
@@ -103,15 +105,22 @@ export default function SignIn() {
             }))
         })
     }
-    
-    useEffect(()=>{
-        getData();
-    }, [])
 
-    const dispalayTable = ()=>{
-         $('.data-base').toggle();
-          $('#hide-btn').text("Show-table");
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const dispalayTable = () => {
+        $('.data-base').toggle();
+        $('#hide-btn').text("Show-table");
     }
+
+
+    // modal javascript 
+
+   
+
+  
 
     return (
         <div className='sign-in-prompt'>
@@ -142,8 +151,18 @@ export default function SignIn() {
             <div className='data-base'>
                 {console.log(dataArray)}
                 <Table count={count} array={dataArray}></Table>
+                {/* <Button variant="contained">Hello World</Button> */}
 
             </div>
+            {/* <button class="trigger">Click here to trigger the modal!</button>
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h1>Hello, I am a modal!</h1>
+                </div>
+            </div> */}
+            <QrCode></QrCode>
+
         </div>
 
 
@@ -152,7 +171,7 @@ export default function SignIn() {
 
 
 
-      
+
 
 
       //     ama shu error chhe kbr nathi padti 

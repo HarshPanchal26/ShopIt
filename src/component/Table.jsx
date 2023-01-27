@@ -3,6 +3,7 @@ import '../css/Auth.css'
 // import { initializeApp } from 'firebase/app';
 import { database } from './firbaseConfig.js';
 import {doc , updateDoc , deleteDoc} from 'firebase/firestore';
+import $ from 'jquery';
 
 function Table(props) {
   
@@ -13,6 +14,8 @@ function Table(props) {
         dataFromBase = [...props.array];
         
     const deleteData = (id) =>{
+        // $('${id}').remove();
+        document.getElementById(id).remove()
         const docToDelete = doc(database,"users" ,id);
           deleteDoc(docToDelete)
           .then(()=>{
@@ -41,11 +44,11 @@ function Table(props) {
                 <tbody>
                     { dataFromBase.map((item=>{
                             return (
-                            <tr>
+                            <tr id={item.id}>
                                 <td>{item.name}</td>
                                 <td>{item.email}</td>
-                                {/* <td><button type='button' name="Update" onClick={updateData(item.id)}>Update</button></td> */}
-                                {/* <td><button type='button' name="Delete" onClick={deleteData(item.id)}>Delete</button></td> */}
+                                <td><button type='button' name="Update" onClick={()=>updateData(item.id)}>Update</button></td>
+                                <td><button type='button' name="Delete" onClick={()=>deleteData(item.id)}>Delete</button></td>
                             </tr>)
                             
                         }))
